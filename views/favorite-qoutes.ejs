@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Simpsons</title>
+</head>
+
+<body>
+    <header>
+        <%- include('./layouts/header')%>
+    </header>
+
+    <main>
+        <% data.forEach(char=>{ %>
+            <section>
+                <h1>
+                    <%= char.character%>
+                </h1>
+                <p>
+                    <%= char.quote%>
+                </p>
+                <img src="<%= char.image%>" class="<%= char.direction%>">
+                <form action="/favorite-qoutes?_method=PUT" method="POST">
+                    <input type="text" value="<%= char.character%>" name="character">
+                    <input type="text" value="<%= char.quote%>" name="quote">
+                    <input type="text" value="<%= char.image%>" name="image">
+                    <input type="text" value="<%= char.direction%>" name="direction">
+                    <input type="submit" value="UPDATE Character">
+                </form>
+                <a href="/favorite-quotes/<%= char.id%>?_method=DELETE"><button>DELETE</button></a>
+            </section>
+            <% })%>
+    </main>
+
+
+
+</body>
+
+</html>
